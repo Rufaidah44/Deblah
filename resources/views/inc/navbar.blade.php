@@ -52,8 +52,14 @@
                         </div>
                         
                        <div class="seach_icon2">
-                            <a href="/tologin">
+                           @if (Auth::user())
+                                <a href="/personalpage">
                                 <i class="fa fa-user"></i>
+                                 <p>{{Auth::user()->name}}</p>   
+                           @else
+                               <a href="{{route('login')}}">
+                                <i class="fa fa-user"></i>
+                           @endif
                             </a>
                         </div>
 

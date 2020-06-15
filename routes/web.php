@@ -23,8 +23,13 @@ Auth::routes();
 Route::get('/', "PagesController@index") ;
 Route::get('/about', "PagesController@about") ;
 Route::get('/services', "PagesController@services") ;
-Route::get('/tologin', "PagesController@login");
-Route::get('/personalpage', "CustommerController@personal");
+
+
+Route::get('/personalpage', "CustomerController@personal");
+
+Route::get('/servprovidersignup', "ServProviderController@signup");
+Route::get('/servproviderpage', "ServProviderController@personal"); 
+Route::resource('servprovidersegester', "ServProviderController"); 
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('/users','UsersController',['except' => ['Show','create','store']]);

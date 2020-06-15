@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>this is user personal page</h1>
+    <h1>this is Services Provider personal page</h1>
     <p><a class="dropdown-item" href="{{ route('logout') }}"
         onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">

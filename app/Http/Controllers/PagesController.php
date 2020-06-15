@@ -29,4 +29,8 @@ class PagesController extends Controller
         $title = "Login"; 
         return view('pages.tologin' , compact('title'));
     } 
+    public function personal() {
+        $title = "Welcome to Your  Page";
+        return view('customer.customerpage') ->with('title', $title );
+    } 
 }

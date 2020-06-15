@@ -47,6 +47,9 @@
 
 
             <div id="News" class="tabcontent" dir="rtl">
+            <div>
+                <center> <h4 style="color: #1a535c">هل أنت مقدم خدمة؟؟ <a href="/servprovidersignup">سجل هنا</a></h4><center>
+            </div>
                 <form class="logmodal-content animate" action="{{ route('register') }}" method="POST">
                     @csrf
                     <div class="logcontainer ">
