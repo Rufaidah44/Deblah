@@ -27,6 +27,7 @@
 
             <form class="logmodal-content animate" action="{{url('servprovidersegester')}}" method="POST">
                 @csrf
+                {{csrf_field()}}
                 <div class="logcontainer ">
 
                     <input type="email" id="email" name="email" placeholder="البريد الالكتروني"

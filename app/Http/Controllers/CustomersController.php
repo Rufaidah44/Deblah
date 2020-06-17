@@ -1,24 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\ServProviders;
-use App\User;
-use App\Role;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Webpatser\Uuid\Uuid;
+use App\Customers;
+use App\User;
+use App\Role;
 use Illuminate\Support\Facades\Auth;
-use AuthenticatesUsers; 
 
-class ServProviderController extends Controller
+class CustomersController extends Controller
 {
     
-
-    protected $redirectTo = '/servproviderpage';
-
+    protected $redirectTo = '/personalpage';
+    
     
 
+    public function personal() {
+        $title = "Welcome to Your  Page";
+        return view('customer.customerpage') ->with('title', $title );
+    } 
     /**
      * Display a listing of the resource.
      *
@@ -26,19 +29,20 @@ class ServProviderController extends Controller
      */
     public function index()
     {
-        
-        
-    }
-    public function signup()
-    {
-        return view('providers.servprovidersignup');
-    }
-    public function personal()
-    {
-        return view('providers.servproviderpage');
+        //
     }
 
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name'          => ['required', 'string', 'max:255'],
+            'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'      => ['required', 'string', 'min:6', 'confirmed'],
+            'mobile'        => ['required', 'string', 'min:10', 'regex:/(0)[0-9]/','not_regex:/[a-z]/'],
+            
 
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -46,7 +50,7 @@ class ServProviderController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -64,40 +68,40 @@ class ServProviderController extends Controller
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password'      => ['required', 'string', 'min:6', 'confirmed'],
             'mobile'        => ['required', 'string', 'min:10', 'regex:/(0)[0-9]/','not_regex:/[a-z]/'],
-            'servtype'      => ['required']
+            
 
         ]);
 
-        $serprovider = new ServProviders([
-            'p_ID'                  =>$uuid,
-            'p_owner_name'          => $request['name'],
-            'p_email1'              => $request['email'],
-            'password'              => Hash::make($request['password']),
-            'p_mobile1'             => $request['mobile'],
-            'p_serv_type'           => $request['servtype']
+        $customer = new Customers([
+            'c_ID'                   =>$uuid,
+            'c_name'                 => $request['name'],
+            'c_email'                => $request['email'],
+            'password'               => Hash::make($request['password']),
+            'c_phone'                => $request['mobile'],
         ]);
 
-        $serprovider->save();
+        $customer->save();
+        //---------------------------------------
 
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'role' => 'service provider'
+            'role' => 'customer'
         ]);
 
-        $role = Role::select('id')->where('name','service provider')->first();
+        $role = Role::select('id')->where('name','customer')->first();
         $user->roles()->attach($role);
-        $user->save();
+    
         $crd = ['email' => $request['email'],
                 'password' =>$request['password'],];
                 if(Auth::attempt($crd))
                 {
-                    return redirect('/servproviderpage')->with('success', 'مرحبا بك عزيزنا مقدم الخدمات .. تم تسجيلك بنجاح');
+                    return redirect('/personalpage')->with('success', 'مرحبا بك عزيزنا العميل .. تم تسجيلك بنجاح'); 
                 }
                 else return 'error';
 
-        
+        //return redirect('/personalpage');
     }
 
     /**

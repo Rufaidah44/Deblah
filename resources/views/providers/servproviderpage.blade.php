@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+@if (\Session::has('success'))
+                <div>
+                <p>{{\Session::get('success')}}</p>
+                </div>
+    @endif
     <h1>this is Services Provider personal page</h1>
+    <p> this is the main users page {{ Auth::user()->name }}</p>
     <p><a class="dropdown-item" href="{{ route('logout') }}"
         onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">

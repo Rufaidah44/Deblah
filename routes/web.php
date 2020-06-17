@@ -25,7 +25,8 @@ Route::get('/about', "PagesController@about") ;
 Route::get('/services', "PagesController@services") ;
 
 
-Route::get('/personalpage', "CustomerController@personal");
+Route::get('/personalpage', "CustomersController@personal");
+Route::resource('customersignup', "CustomersController");
 
 Route::get('/servprovidersignup', "ServProviderController@signup");
 Route::get('/servproviderpage', "ServProviderController@personal"); 
