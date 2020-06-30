@@ -64,7 +64,7 @@
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password], input[type=email] {
+input[type=text], input[type=password], input[type=email],input[type=number], input[type=file]{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -75,6 +75,17 @@ input[type=text], input[type=password], input[type=email] {
   -moz-border-radius: 5px;
   border-radius: 5px;
   
+}
+
+.inputnumber{
+  padding: 12px 20px !important;
+  margin: 8px 0 !important;
+  display: inline-block !important;
+  border: 1px solid #ccc !important;
+  box-sizing: border-box !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
 }
 
 /* Set a style for all buttons */
@@ -188,4 +199,8 @@ span.psw {
   .cancelbtn {
      width: 100%;
   }
+}
+
+table .addserv .table .table-borderless tbody tr {
+  border: none !important;
 }

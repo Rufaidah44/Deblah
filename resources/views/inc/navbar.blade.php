@@ -56,11 +56,19 @@
                                  <a href="{{route('login')}}">
                                     <i class="fa fa-user"></i>
                            @else
+                            @if (Auth::user()->role == 'customer')
                              <a href="/personalpage">
                              <i class="fa fa-user"></i>
                              <p>{{Auth::user()->name}}</p>  
+
+                             @elseif (Auth::user()->role == 'service provider')
+                             <a href="/servproviderpage">
+                             <i class="fa fa-user"></i>
+                             <p>{{Auth::user()->name}}</p> 
+                             @endif
                            @endif
                             </a>
+                            
                         </div>
 
                         <div class="col-12" >

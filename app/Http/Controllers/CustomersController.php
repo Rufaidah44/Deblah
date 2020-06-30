@@ -34,14 +34,7 @@ class CustomersController extends Controller
 
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name'          => ['required', 'string', 'max:255'],
-            'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password'      => ['required', 'string', 'min:6', 'confirmed'],
-            'mobile'        => ['required', 'string', 'min:10', 'regex:/(0)[0-9]/','not_regex:/[a-z]/'],
-            
-
-        ]);
+        
     }
     /**
      * Show the form for creating a new resource.
