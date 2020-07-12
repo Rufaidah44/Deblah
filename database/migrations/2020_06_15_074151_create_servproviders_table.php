@@ -14,8 +14,7 @@ class CreateServprovidersTable extends Migration
     public function up()
     {
         Schema::create('servproviders', function (Blueprint $table) {
-        $table->id();
-        $table->uuid('p_ID');
+        $table->uuid('p_ID')->primary();
         $table->string('p_owner_name');
         $table->string('p_agent_name1')->nullable();
         $table->string('p_agent_name2')->nullable();

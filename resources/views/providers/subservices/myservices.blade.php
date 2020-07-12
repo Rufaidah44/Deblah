@@ -2,7 +2,12 @@
 @section('content2')
 
 
-
+<script>
+    var title = 0;
+$(document).ready( function() {
+    $("#ptitle").text("خدماتي ...");
+});
+</script>
 
 <div class="m-3">
     <button class="boxed-btn3" onclick="document.getElementById('id01').style.display='block'"
@@ -272,9 +277,10 @@
 
 
                                 <br>
-                                <label for="hall_photos">صور القاعة: </label>
-                                <input type="file" id="hall_photos" name="hall_photos" placeholder="اختر الصور" multiple
-                                    title="اختر الصور">
+                                <label for="hall_photos" style="font-size: 1em">صور القاعة: </label><br><label>اختر جميع الصور مرة واحدة</label>
+                                <input type="file" id="hall_photos" name="hall_photos[]" placeholder="اختر الصور" multiple
+                                    title="اختر الصور" accept="image/*" required>
+                                    <div id="preview"></div>
                             </div>
                             <hr>
                             <div>
@@ -307,5 +313,30 @@
 </div>
 
 
+<script>
+    function previewImages() {
 
+var $preview = $('#preview').empty();
+if (this.files) $.each(this.files, readAndPreview);
+
+function readAndPreview(i, file) {
+  
+  if (!/\.(jpe?g|png|gif)$/i.test(file.name)){
+    return alert(file.name +" is not an image");
+  } // else...
+  
+  var reader = new FileReader();
+
+  $(reader).on("load", function() {
+    $preview.append($("<img/>", {src:this.result, height:100}));
+  });
+
+  reader.readAsDataURL(file);
+  
+}
+
+}
+
+$('#hall_photos').on("change", previewImages);
+</script>
 @endsection

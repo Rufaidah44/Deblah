@@ -11,13 +11,14 @@
         </div>
         @endif
 
+        
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-left mt-3" style="display:none" id="mySidebar">
           <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
           <a href="/myservices" class="w3-bar-item w3-button">خدماتي</a>
-          <a href="/myProfile" class="w3-bar-item w3-button">الحجوزات</a>
+          <a href="/myBookedServ" class="w3-bar-item w3-button">الحجوزات</a>
           <a href="/myNotifications" class="w3-bar-item w3-button">تنبيهات</a>
           <a href="/myMessages" class="w3-bar-item w3-button">الرسائل</a>
-          <a href="/myBookedServ" class="w3-bar-item w3-button">معلوماتي</a>
+          <a href="/myProfile" class="w3-bar-item w3-button">معلوماتي</a>
           <a class="btn" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">تسجيل الخروج</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -31,13 +32,26 @@
           </div>
           <div>
             <div class="w3-container" dir="rtl" style="text-align: right">
-              <h2>الصفحة الخاصة بمقدمي الخدمات... </h2>
+              <h2 id="ptitle"> </h2>
+              <script>var title=1;</script>
               <hr style="border-top: 3px solid #ff6b6b">
             </div>
 
             <div class="w3-container" dir="rtl" style="text-align: center">
+              @if (Auth::user()->servproviders->p__bank_iban == null )
+            <div class="alert alert-danger" role="alert">
+                الرجاء اكمال البيانات المطلوبة <a href="/myProfile#edit">من هنا</a>
+                            </div>
+            @endif
               @yield("content2")
 
+              <script>
+                if( title == 1){
+                $(document).ready( function() {
+                    $("#ptitle").text("الصفحة الخاصة بمقدمي الخدمات...");
+                });}
+                </script>
+                
             </div>
           </div>
         </div>

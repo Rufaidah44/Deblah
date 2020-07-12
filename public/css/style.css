@@ -1263,7 +1263,7 @@ h3 {
 /* line 324, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_header.scss */
 .header-area .seach_icon {
   position: absolute;
-  left: 50px;
+  left: 60px;
   top: 0;
   bottom: 0;
   z-index: 9;
@@ -1285,12 +1285,13 @@ h3 {
 @media (max-width: 767px) {
   /* line 324, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_header.scss */
   .header-area .seach_icon {
-    width: 40px;
-    right: 120px;
+    width: 50px;
+    left: 130px;
+  
   }
   .header-area .seach_icon2 {
-    width: 40px;
-    right: 80px;
+    width: 50px;
+    left: 80px;
   }
 }
 
@@ -1298,11 +1299,11 @@ h3 {
   /* line 324, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_header.scss */
   .header-area .seach_icon {
     width: 60px;
-    right: 160px;
+    left: 160px;
   }
   .header-area .seach_icon2{
     width: 60px;
-    right: 100px;
+    left: 100px;
   }
 }
 
@@ -6758,3 +6759,5 @@ h6 {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+

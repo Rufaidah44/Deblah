@@ -16,7 +16,10 @@ class CustomersController extends Controller
     
     protected $redirectTo = '/personalpage';
     
-    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function personal() {
         $title = "Welcome to Your  Page";

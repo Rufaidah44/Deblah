@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role',
+        'uid','name', 'email', 'password','role',
     ];
 
     /**
@@ -59,4 +59,9 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function servproviders()
+     {
+        return $this->belongsTo('App\ServProviders', 'uid', 'p_ID');
+     }
 }

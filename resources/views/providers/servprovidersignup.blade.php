@@ -72,8 +72,9 @@
                         <input type="radio" name="servtype"  id="servtype" value="ضيافة و توزيعات" class=""> تصوير مناسبات<br>
                         <input type="radio" name="servtype" id="servtype" value="تصوير مناسبات" class=""> ضيافة و توزيعات<br>
                         <input type="radio" name="servtype" id="servtype" value="أخرى" class=""> أخرى<br><br>
-                    </div>
-                    <p>عند تسجيلك فأنت توافق على <a href="#" style="color:dodgerblue">الشروط و الأحكام</a>.</p>
+                    </div> 
+                    
+                    <p><input type="checkbox" name="accept" id="accept" required>&nbsp;&nbsp; أوافق على <a href="#" style="color:dodgerblue">الشروط و الأحكام</a>.</p>
 
                     <div class="clearfix">
                         <button type="submit" class="signupbtn">تسجيل</button>

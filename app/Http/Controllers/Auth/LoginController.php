@@ -40,7 +40,22 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if(Auth::user()->hasRole('admin')){
+
+        if(Auth::user()->role == 'admin'){
+            $this->redirectTo = '/';
+            return $this-> redirectTo;
+        }
+
+        if(Auth::user()->role == 'customer'){
+            $this->redirectTo = '/personalpage';
+            return $this-> redirectTo;
+        }
+
+        if(Auth::user()->role == 'service provider'){
+            $this->redirectTo = '/servproviderpage';
+            return $this-> redirectTo;
+        }
+        /*if(Auth::user()->hasRole('admin')){
             $this->redirectTo = '/';
             return $this-> redirectTo;
         }
@@ -52,6 +67,6 @@ class LoginController extends Controller
         if(Auth::user()->hasRole('serviceprovider')){
             $this->redirectTo = '/servproviderpage';
             return $this-> redirectTo;
-        }
+        }*/
     }
 }

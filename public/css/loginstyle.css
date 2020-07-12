@@ -204,3 +204,17 @@ span.psw {
 table .addserv .table .table-borderless tbody tr {
   border: none !important;
 }
+
+
+/*table .table tbody tr td */
+td .profiletd1{
+  width: 30%;
+  text-align: center !important;
+}
+/*table .table tbody tr td*/
+ td .profiletd2{
+  width: 70% !important; 
+  text-align:left !important;
+  padding:5px !important;
+}
+

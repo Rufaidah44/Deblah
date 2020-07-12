@@ -45,6 +45,8 @@ class CreateHallServicesTable extends Migration
             $table->string('female_services_room')->nullable();
             $table->string('hall_photos');
             $table->timestamps();
+
+            $table->index('p_ID');
         
         });
     }

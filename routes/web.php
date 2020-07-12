@@ -34,14 +34,14 @@ Route::resource('customersignup', "CustomersController");
 Route::get('/servprovidersignup', "ServProviderController@signup");
 Route::get('/servproviderpage', "ServProviderController@personal"); 
 Route::resource('servprovidersegester', "ServProviderController"); 
-Route::get('/myservices', "ProvPagesController@myServices") ;
-Route::get('/myProfile', "ProvPagesController@myProfile") ;
+Route::get('/myservices', "ProvPagesController@myServices");
+Route::get('/myProfile', "ProvPagesController@myProfile");
+Route::post('/myProfile_edit', "ServProviderController@update");
 Route::get('/myNotifications', "ProvPagesController@myNotifications") ;
-Route::get('/myMessages', "ProvPagesController@myMessages") ;
-Route::get('/myBookedServ', "ProvPagesController@myBookedServ") ;
+Route::get('/myMessages', "ProvPagesController@myMessages");
+Route::get('/myBookedServ', "ProvPagesController@myBookedServ");
 Route::resource('addnewhall',"HallServiceController");
-
-
+Route::get('/halls/{hall}',"HallServiceController@show");
 
 
 

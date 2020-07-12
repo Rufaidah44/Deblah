@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webpatser\Uuid\Uuid;
 use App\HallAvailableDates;
+use App\hallsphotos;
 
 class HallServiceController extends Controller
 {
@@ -53,7 +54,8 @@ class HallServiceController extends Controller
             'female_no'             => ['required', 'integer', 'digits_between: 0, 800'],
             'male_no'               => ['required', 'integer', 'digits_between: 0,800'],
             'female_services_room'  => ['required', 'string', 'max:255'],
-            'hall_photos'           => ['required'],
+            'hall_photos'           => ['required', ],
+            'hall_photos.*'         => ['mimes:jpg,jpeg,png,gif,bmp'],
             'h_dates'               => ['required'],
         ]);
 
@@ -61,7 +63,7 @@ class HallServiceController extends Controller
 
         $newhall = HallServices::create([
             's_ID'                  =>$suid,
-            'p_ID'                  =>Auth::user()->id,
+            'p_ID'                  =>Auth::user()->uid,
             'h_status'              =>'AVAILABLE', 
             'h_name'                => $request['h_name'],
             'h_type'                => $request['h_type'], 
@@ -88,15 +90,36 @@ class HallServiceController extends Controller
             'female_decoration'     => $request['female_decoration'], 
             'vip_room'              => $request['vip_room'], 
             'female_services_room'  => $request['female_services_room'], 
-            'hall_photos'           => $request['hall_photos'],
+            
         ]);
         
+
+        if($request->hasFile('hall_photos'))
+        {
+            foreach ($request->file('hall_photos') as $photo) {
+                
+                $filename = $photo->getClientOriginalName();
+                
+                $fileext = $photo->getClientOriginalExtension();
+                $newphotoname = rand(10000000,999999999).".".$fileext;
+                $filesize = $photo->getSize();
+                $filepath = 'public/halls/'.$request['h_name'];
+                $photo->storeAs($filepath,$newphotoname);
+
+                
+                $newphoto = new hallsphotos();
+                $newphoto->s_ID = $suid;
+                $newphoto->photo_name = $newphotoname;
+                $newphoto->photo_size = $filesize;
+                $newphoto->photo_path = $filepath;
+                $newphoto->save();
+                
+            }
+        }
         $savehall = $newhall->save();
 
         $dateString = $request['h_dates'];
         $dateArray = explode(',', $dateString);
-
-
         foreach($dateArray as $date){ 
             $availabledates = HallAvailableDates::create([
                 's_ID'              => $suid,
@@ -108,12 +131,11 @@ class HallServiceController extends Controller
                 $availabledates->save();
          }
 
-            return redirect('/myservices')->with('success', 'تمت إضافة القاعة بنجاح');
+            //return redirect('/myservices')->with('success', 'تمت إضافة القاعة بنجاح');
+            //return redirect('/myhalls', $newhall);
         }
     
         
-            
-    
 
 
     /**
@@ -124,7 +146,8 @@ class HallServiceController extends Controller
      */
     public function show($id)
     {
-        //
+
+        return view('providers.subservices.hallservice')->with($id);
     }
 
     /**
